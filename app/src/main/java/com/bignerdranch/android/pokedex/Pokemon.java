@@ -1,5 +1,7 @@
 package com.bignerdranch.android.pokedex;
 
+import android.widget.ImageView;
+
 import java.util.UUID;
 
 /**
@@ -9,7 +11,16 @@ public class Pokemon {
     private String mName;
     private String mType;
     private UUID mId;
+    private int mPic;
     private boolean mCaptured;
+
+    public int getPic() {
+        return mPic;
+    }
+
+    public void setPic(int pic) {
+        mPic = pic;
+    }
 
     public boolean isCaptured() {
         return mCaptured;

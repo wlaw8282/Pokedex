@@ -62,11 +62,34 @@ public class Pokedex {
         mPokemonType[17] = "Flying";
         mPokemonType[18] = "Normal";
         mPokemonType[19] = "Normal";
+        int [] mPokemonPhoto;
+        mPokemonPhoto = new int [20];
+        mPokemonPhoto[0] = R.drawable.a;
+        mPokemonPhoto[1] = R.drawable.b;
+        mPokemonPhoto[2] = R.drawable.c;
+        mPokemonPhoto[3] = R.drawable.d;
+        mPokemonPhoto[4] = R.drawable.e;
+        mPokemonPhoto[5] = R.drawable.f;
+        mPokemonPhoto[6] = R.drawable.g;
+        mPokemonPhoto[7] = R.drawable.h;
+        mPokemonPhoto[8] = R.drawable.i;
+        mPokemonPhoto[9] = R.drawable.j;
+        mPokemonPhoto[10] = R.drawable.k;
+        mPokemonPhoto[11] = R.drawable.l;
+        mPokemonPhoto[12] = R.drawable.m;
+        mPokemonPhoto[13] = R.drawable.n;
+        mPokemonPhoto[14] = R.drawable.o;
+        mPokemonPhoto[15] = R.drawable.p;
+        mPokemonPhoto[16] = R.drawable.q;
+        mPokemonPhoto[17] = R.drawable.r;
+        mPokemonPhoto[18] = R.drawable.s;
+        mPokemonPhoto[19] = R.drawable.t;
         mPokemonIndex = new ArrayList<>();
         for(int i = 0; i < 20; i++) {
             Pokemon pokemon = new Pokemon();
             pokemon.setName(mPokemonList[i]);
             pokemon.setType(mPokemonType[i]);
+            pokemon.setPic(mPokemonPhoto[i]);
             mPokemonIndex.add(pokemon);
         }
     }

@@ -1,5 +1,6 @@
 package com.bignerdranch.android.pokedex;
 
+import android.media.Image;
 import android.view.LayoutInflater;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -8,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.UUID;
@@ -20,6 +22,7 @@ public class PokemonFragment extends Fragment {
     private Pokemon mPokemon;
     private TextView mPokemonName;
     private TextView mPokemonType;
+    private ImageView mPokemonPic;
     private CheckBox mPokemonCapturedBox;
     public static PokemonFragment newInstance (UUID pokeId) {
         Bundle args = new Bundle();
@@ -41,8 +44,10 @@ public class PokemonFragment extends Fragment {
         View v = getLayoutInflater(savedInstanceState).inflate(R.layout.fragment_pokemon, container, false);
         mPokemonName = (TextView)v.findViewById(R.id.pokemon_name);
         mPokemonType = (TextView)v.findViewById(R.id.pokemon_type);
+        mPokemonPic = (ImageView) v.findViewById(R.id.pokemon_pic);
         mPokemonName.setText(mPokemon.getName());
         mPokemonType.setText(mPokemon.getType());
+        mPokemonPic.setImageResource(mPokemon.getPic());
         mPokemonCapturedBox = (CheckBox)v.findViewById(R.id.pokemon_captured);
         mPokemonCapturedBox.setChecked(mPokemon.isCaptured());
         mPokemonCapturedBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
