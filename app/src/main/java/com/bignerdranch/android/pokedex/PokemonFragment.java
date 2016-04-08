@@ -1,5 +1,7 @@
 package com.bignerdranch.android.pokedex;
 
+import android.app.FragmentManager;
+import android.content.Context;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.os.Bundle;
@@ -12,6 +14,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.List;
 import java.util.UUID;
 
 public class PokemonFragment extends Fragment {
@@ -20,7 +23,13 @@ public class PokemonFragment extends Fragment {
     private TextView mPokemonName;
     private TextView mPokemonType;
     private ImageView mPokemonPic;
+    private ImageView mPokemonEvo1;
+    private ImageView mPokemonEvo2;
+    private ImageView mPokemonEvo3;
+    private List<Pokemon> mPokemonList;
     private CheckBox mPokemonCapturedBox;
+    private Context mContext;
+    static int instanceCounter = 0;
     public static PokemonFragment newInstance (UUID pokeId) {
         Bundle args = new Bundle();
         args.putSerializable(POKEMON_ID, pokeId);
@@ -39,9 +48,14 @@ public class PokemonFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v = getLayoutInflater(savedInstanceState).inflate(R.layout.fragment_pokemon, container, false);
+        super.onCreateView(inflater,container,savedInstanceState);
+        mPokemonList = Pokedex.get(mContext).getPokemons();
         mPokemonName = (TextView)v.findViewById(R.id.pokemon_name);
         mPokemonType = (TextView)v.findViewById(R.id.pokemon_type);
         mPokemonPic = (ImageView) v.findViewById(R.id.pokemon_pic);
+        mPokemonEvo1 = (ImageView) v.findViewById(R.id.pokemon_evo1);
+        mPokemonEvo2 = (ImageView) v.findViewById(R.id.pokemon_evo2);
+        mPokemonEvo3 = (ImageView) v.findViewById(R.id.pokemon_evo3);
         mPokemonName.setText(mPokemon.getName());
         mPokemonType.setText(mPokemon.getType());
         mPokemonPic.setImageResource(mPokemon.getPic());
@@ -53,6 +67,28 @@ public class PokemonFragment extends Fragment {
                 mPokemon.setCaptured(isCaptured);
             }
         });
+        for(int i = 0; i < 19; i++) {
+            for (int j = instanceCounter; j < 3; j++) {
+                if  (j == 0) {
+                    mPokemonEvo1.setImageResource(mPokemonList.get(j).getPic());
+                    mPokemonEvo2.setImageResource(mPokemonList.get(j+1).getPic());
+                    mPokemonEvo3.setImageResource(mPokemonList.get(j+2).getPic());
+                } else if (j == 1) {
+                    mPokemonEvo1.setImageResource(mPokemonList.get(j-1).getPic());
+                    mPokemonEvo2.setImageResource(mPokemonList.get(j).getPic());
+                    mPokemonEvo3.setImageResource(mPokemonList.get(j+1).getPic());
+                } else if (j == 2) {
+                    mPokemonEvo1.setImageResource(mPokemonList.get(j-2).getPic());
+                    mPokemonEvo2.setImageResource(mPokemonList.get(j-2).getPic());
+                    mPokemonEvo3.setImageResource(mPokemonList.get(j).getPic());
+                }
+            }
+            instanceCounter++;
+            if(instanceCounter == 3) {
+                instanceCounter = 0;
+            }
+        }
+
 
         return v;
     }
