@@ -14,9 +14,6 @@ import android.widget.TextView;
 
 import java.util.UUID;
 
-/**
- * Created by willi on 4/1/2016.
- */
 public class PokemonFragment extends Fragment {
     private static final String POKEMON_ID = "pokemon_id";
     private Pokemon mPokemon;
@@ -58,8 +55,6 @@ public class PokemonFragment extends Fragment {
         });
 
         return v;
-        //testing out this thing
-        //changes changes
     }
 
 }

@@ -62,7 +62,7 @@ public class Pokedex {
         mPokemonType[17] = "Flying";
         mPokemonType[18] = "Normal";
         mPokemonType[19] = "Normal";
-        int [] mPokemonPhoto;
+        int[] mPokemonPhoto;
         mPokemonPhoto = new int [20];
         mPokemonPhoto[0] = R.drawable.a;
         mPokemonPhoto[1] = R.drawable.b;

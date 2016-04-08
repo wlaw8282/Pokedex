@@ -13,9 +13,6 @@ import android.widget.TextView;
 
 import java.util.List;
 
-/**
- * Created by willi on 4/1/2016.
- */
 public class PokeListFragment extends Fragment {
     private RecyclerView mPokemonRecyclerView;
     private PokeAdapter mPokeAdapter;
@@ -38,7 +35,7 @@ public class PokeListFragment extends Fragment {
         if(mPokeAdapter == null) {
             mPokeAdapter = new PokeAdapter (pokemon);
             mPokemonRecyclerView.setAdapter(mPokeAdapter);
-        } else {
+        }else{
             mPokeAdapter.notifyDataSetChanged();
         }
     }

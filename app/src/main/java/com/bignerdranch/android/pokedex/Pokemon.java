@@ -1,12 +1,8 @@
 package com.bignerdranch.android.pokedex;
 
-import android.widget.ImageView;
 
 import java.util.UUID;
 
-/**
- * Created by willi on 4/1/2016.
- */
 public class Pokemon {
     private String mName;
     private String mType;
