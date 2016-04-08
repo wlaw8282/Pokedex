@@ -39,6 +39,25 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
+    <ImageView
+        android:id ="@+id/pokemon_evo1"
+        android:layout_alignParentLeft="true"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"/>
 
+    <ImageView
+        android:id ="@+id/pokemon_evo2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/pokemon_evo1"
+        android:layout_alignParentBottom="true"/>
+
+    <ImageView
+        android:id ="@+id/pokemon_evo3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_toRightOf="@id/pokemon_evo2"
+        android:layout_alignParentBottom="true"/>
 
 </RelativeLayout>
