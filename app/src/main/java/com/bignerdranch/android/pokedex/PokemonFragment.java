@@ -67,7 +67,7 @@ public class PokemonFragment extends Fragment {
                 mPokemon.setCaptured(isCaptured);
             }
         });
-        for(int i = 0; i < 19; i++) {
+        for(int i = 0; i < mPokemonList.size(); i++) {
             for (int j = instanceCounter; j < 3; j++) {
                 if  (j == 0) {
                     mPokemonEvo1.setImageResource(mPokemonList.get(j).getPic());
@@ -79,7 +79,7 @@ public class PokemonFragment extends Fragment {
                     mPokemonEvo3.setImageResource(mPokemonList.get(j+1).getPic());
                 } else if (j == 2) {
                     mPokemonEvo1.setImageResource(mPokemonList.get(j-2).getPic());
-                    mPokemonEvo2.setImageResource(mPokemonList.get(j-2).getPic());
+                    mPokemonEvo2.setImageResource(mPokemonList.get(j-1).getPic());
                     mPokemonEvo3.setImageResource(mPokemonList.get(j).getPic());
                 }
             }
