@@ -35,7 +35,6 @@ public class PokemonPagerActivity extends FragmentActivity {
             @Override
             public Fragment getItem(int position) {
                 Pokemon pokemon = mPokemonList.get(position);
-                System.out.println("Postion: " + position);
                 return PokemonFragment.newInstance(pokemon.getId());
             }
 
