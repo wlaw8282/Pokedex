@@ -19,6 +19,7 @@ import java.util.UUID;
 
 public class PokemonFragment extends Fragment {
     private static final String POKEMON_ID = "pokemon_id";
+    private static final String POKEMON_COUNTER = "pokemon_counter";
     private Pokemon mPokemon;
     private TextView mPokemonName;
     private TextView mPokemonType;
@@ -29,10 +30,12 @@ public class PokemonFragment extends Fragment {
     private List<Pokemon> mPokemonList;
     private CheckBox mPokemonCapturedBox;
     private Context mContext;
-    static int instanceCounter = 0;
+    static int instanceCounter;
+    static int instanceStateCounter;
     public static PokemonFragment newInstance (UUID pokeId) {
         Bundle args = new Bundle();
         args.putSerializable(POKEMON_ID, pokeId);
+        args.putInt(POKEMON_COUNTER, instanceCounter);
         PokemonFragment fragment = new PokemonFragment();
         fragment.setArguments(args);
         return fragment;
@@ -42,6 +45,7 @@ public class PokemonFragment extends Fragment {
         super.onCreate(savedInstancestate);
         mPokemon = new Pokemon();
         UUID pokeId = (UUID) getArguments().getSerializable(POKEMON_ID);
+        instanceStateCounter = getArguments().getInt(POKEMON_COUNTER);
         mPokemon = Pokedex.get(getActivity()).getPokemon(pokeId);
     }
 
@@ -67,28 +71,47 @@ public class PokemonFragment extends Fragment {
                 mPokemon.setCaptured(isCaptured);
             }
         });
-        for(int i = 0; i < mPokemonList.size(); i++) {
-            for (int j = instanceCounter; j < 3; j++) {
-                if  (j == 0) {
-                    mPokemonEvo1.setImageResource(mPokemonList.get(j).getPic());
-                    mPokemonEvo2.setImageResource(mPokemonList.get(j+1).getPic());
-                    mPokemonEvo3.setImageResource(mPokemonList.get(j+2).getPic());
-                } else if (j == 1) {
-                    mPokemonEvo1.setImageResource(mPokemonList.get(j-1).getPic());
-                    mPokemonEvo2.setImageResource(mPokemonList.get(j).getPic());
-                    mPokemonEvo3.setImageResource(mPokemonList.get(j+1).getPic());
-                } else if (j == 2) {
-                    mPokemonEvo1.setImageResource(mPokemonList.get(j-2).getPic());
-                    mPokemonEvo2.setImageResource(mPokemonList.get(j-1).getPic());
-                    mPokemonEvo3.setImageResource(mPokemonList.get(j).getPic());
-                }
+        instanceCounter = instanceStateCounter;
+        if (instanceCounter >= 2) {
+            System.out.println("instance is" + instanceCounter);
+            if (instanceCounter < mPokemonList.size()-1) {
+                instanceCounter++;
             }
+            int j = instanceCounter;
+            System.out.println("j is " + j);
+            if (j % 3 == 0) {
+                mPokemonEvo1.setImageResource(mPokemonList.get(j).getPic());
+                mPokemonEvo2.setImageResource(mPokemonList.get(j + 1).getPic());
+                mPokemonEvo3.setImageResource(mPokemonList.get(j + 2).getPic());
+            } else if (j % 3 == 1) {
+                mPokemonEvo1.setImageResource(mPokemonList.get(j - 1).getPic());
+                mPokemonEvo2.setImageResource(mPokemonList.get(j).getPic());
+                mPokemonEvo3.setImageResource(mPokemonList.get(j + 1).getPic());
+            } else if (j % 3 == 2) {
+                mPokemonEvo1.setImageResource(mPokemonList.get(j - 2).getPic());
+                mPokemonEvo2.setImageResource(mPokemonList.get(j - 1).getPic());
+                mPokemonEvo3.setImageResource(mPokemonList.get(j).getPic());
+            }
+        } else {
+            int i = instanceCounter;
             instanceCounter++;
-            if(instanceCounter == 3) {
-                instanceCounter = 0;
+            System.out.println("instance is: " + instanceCounter);
+            System.out.println("i is " + i);
+            if (i % 3 == 0) {
+                mPokemonEvo1.setImageResource(mPokemonList.get(i).getPic());
+                mPokemonEvo2.setImageResource(mPokemonList.get(i + 1).getPic());
+                mPokemonEvo3.setImageResource(mPokemonList.get(i + 2).getPic());
+            } else if (i % 3 == 1) {
+                mPokemonEvo1.setImageResource(mPokemonList.get(i - 1).getPic());
+                mPokemonEvo2.setImageResource(mPokemonList.get(i).getPic());
+                mPokemonEvo3.setImageResource(mPokemonList.get(i + 1).getPic());
+            } else if (i % 3 == 2) {
+                mPokemonEvo1.setImageResource(mPokemonList.get(i - 2).getPic());
+                mPokemonEvo2.setImageResource(mPokemonList.get(i - 1).getPic());
+                mPokemonEvo3.setImageResource(mPokemonList.get(i).getPic());
             }
-        }
 
+        }
 
         return v;
     }
